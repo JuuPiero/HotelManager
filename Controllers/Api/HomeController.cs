@@ -34,7 +34,7 @@ public class HomeController : Controller
 
 
     [HttpPost("delete/{id}")]
-    // [Authorize(Roles = "ROLE_ADMIN")]
+    [Authorize(Roles = "ROLE_ADMIN")]
     public async Task<IActionResult> Delete(int id)
     {
         var home = await _dbContext.Homes.FindAsync(id);
@@ -53,7 +53,7 @@ public class HomeController : Controller
 
 
     [HttpPost("create")]
-    // [Authorize(Roles = "ROLE_ADMIN")]
+    [Authorize(Roles = "ROLE_ADMIN")]
     public async Task<IActionResult> Create([FromBody] HomeViewModel homeViewModel)
     {
         if (homeViewModel == null)
@@ -83,7 +83,7 @@ public class HomeController : Controller
 
 
     [HttpPost("update/{id}")]
-    // [Authorize(Roles = "ROLE_ADMIN")]
+    [Authorize(Roles = "ROLE_ADMIN")]
     public async Task<IActionResult> Update(int id, [FromBody] HomeViewModel homeViewModel)
     {
         if (homeViewModel == null)

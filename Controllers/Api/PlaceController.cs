@@ -1,6 +1,7 @@
 using LuxStayApi.Data;
 using LuxStayApi.Models;
 using LuxStayApi.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -39,7 +40,7 @@ public class PlaceController : Controller
 
 
     [HttpPost("delete/{id}")]
-    // [Authorize(Roles = "ROLE_ADMIN")]
+    [Authorize(Roles = "ROLE_ADMIN")]
     public async Task<IActionResult> Delete(string id)
     {
         var place = await _dbContext.Places.FirstOrDefaultAsync(p => p.place_id == id);
@@ -58,7 +59,7 @@ public class PlaceController : Controller
 
 
     [HttpPost("create")]
-    // [Authorize(Roles = "ROLE_ADMIN")]
+    [Authorize(Roles = "ROLE_ADMIN")]
     public async Task<IActionResult> Create([FromBody] PlaceViewModel placeViewModel)
     {
         if (placeViewModel == null)
@@ -86,7 +87,7 @@ public class PlaceController : Controller
 
 
     [HttpPost("update/{id}")]
-    // [Authorize(Roles = "ROLE_ADMIN")]
+    [Authorize(Roles = "ROLE_ADMIN")]
     public async Task<IActionResult> Update(string id, [FromBody] PlaceViewModel placeViewModel)
     {
         if (placeViewModel == null)

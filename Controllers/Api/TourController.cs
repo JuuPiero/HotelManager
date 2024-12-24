@@ -1,5 +1,6 @@
 using LuxStayApi.Data;
 using LuxStayApi.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -32,7 +33,7 @@ public class TourController : Controller
 
 
     [HttpPost("delete/{id}")]
-    // [Authorize(Roles = "ROLE_ADMIN")]
+    [Authorize(Roles = "ROLE_ADMIN")]
     public async Task<IActionResult> Delete(int id)
     {
         var tour = await _dbContext.Tours.FindAsync(id);
@@ -51,7 +52,7 @@ public class TourController : Controller
 
 
     [HttpPost("create")]
-    // [Authorize(Roles = "ROLE_ADMIN")]
+    [Authorize(Roles = "ROLE_ADMIN")]
     public async Task<IActionResult> Create([FromBody] TourViewModel tourViewModel)
     {
         if (tourViewModel == null)
@@ -80,7 +81,7 @@ public class TourController : Controller
 
 
     [HttpPost("update/{id}")]
-    // [Authorize(Roles = "ROLE_ADMIN")]
+    [Authorize(Roles = "ROLE_ADMIN")]
     public async Task<IActionResult> Update(int id, [FromBody] TourViewModel tourViewModel)
     {
         if (tourViewModel == null)

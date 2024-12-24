@@ -18,7 +18,7 @@ public class UserController : Controller
     }
 
     [HttpGet("{id}")]
-    // [Authorize(Roles = "ROLE_ADMIN")]
+    [Authorize(Roles = "ROLE_ADMIN")]
     public async Task<IActionResult> Get(int id)
     {
         var user = await _dbContext.Users.FindAsync(id);
@@ -27,7 +27,7 @@ public class UserController : Controller
     }
 
     [HttpGet("list-user")]
-    // [Authorize(Roles = "ROLE_ADMIN")]
+    [Authorize(Roles = "ROLE_ADMIN")]
     public async Task<IActionResult> All()
     {
         var users = await _dbContext.Users.ToListAsync();
@@ -36,7 +36,7 @@ public class UserController : Controller
 
 
     [HttpPost("delete/{id}")]
-    // [Authorize(Roles = "ROLE_ADMIN")]
+    [Authorize(Roles = "ROLE_ADMIN")]
     public async Task<IActionResult> Delete(int id)
     {
         var user = await _dbContext.Users.FindAsync(id);
@@ -55,7 +55,7 @@ public class UserController : Controller
 
 
     [HttpPost("create")]
-    // [Authorize(Roles = "ROLE_ADMIN")]
+    [Authorize(Roles = "ROLE_ADMIN")]
     public async Task<IActionResult> Create([FromBody] UserViewModel userViewModel)
     {
         if (userViewModel == null)
@@ -88,7 +88,7 @@ public class UserController : Controller
 
 
     [HttpPost("update/{id}")]
-    // [Authorize(Roles = "ROLE_ADMIN")]
+    [Authorize(Roles = "ROLE_ADMIN")]
     public async Task<IActionResult> Update(int id, [FromBody] UserViewModel userViewModel)
     {
         if (userViewModel == null)

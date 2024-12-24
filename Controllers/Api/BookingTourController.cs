@@ -1,6 +1,7 @@
 using LuxStayApi.Data;
 using LuxStayApi.Models;
 using LuxStayApi.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -26,7 +27,7 @@ public class BookingTourController : Controller
     }
 
     [HttpGet("list-bookingtour")]
-    // [Authorize(Roles = "ROLE_ADMIN")]
+    [Authorize(Roles = "ROLE_ADMIN")]
     public async Task<IActionResult> All()
     {
         var bookingTours = await _dbContext.BookingTours.ToListAsync();

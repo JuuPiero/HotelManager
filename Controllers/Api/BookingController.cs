@@ -27,7 +27,7 @@ public class BookingController : Controller
     }
 
     [HttpGet("list-booking")]
-    // [Authorize(Roles = "ROLE_ADMIN")]
+    [Authorize(Roles = "ROLE_ADMIN")]
     public async Task<IActionResult> All()
     {
         var bookings = await _dbContext.Bookings.ToListAsync();
